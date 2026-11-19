@@ -4,19 +4,19 @@
 
 ## 界面截图
 
-![浅色桌面整理](src/ai-desktop/screenshot-light.png)
+![浅色桌面整理](screenshot-light.png)
 
 *浅色桌面整理 / Light-theme organizer*
 
-![深色围栏](src/ai-desktop/screenshot-fences-dark.png)
+![深色围栏](screenshot-fences-dark.png)
 
 *深色围栏 / Fences, dark theme*
 
-![浅色围栏](src/ai-desktop/screenshot-fences-light.png)
+![浅色围栏](screenshot-fences-light.png)
 
 *浅色围栏 / Fences, light theme*
 
-![引导](src/ai-desktop/screenshot-onboarding-light.png)
+![引导](screenshot-onboarding-light.png)
 
 *引导 / Onboarding*
 
@@ -24,7 +24,7 @@
 
 - 桌面围栏与图标整理，支持浅色 / 深色主题。
 - 引导流程帮助完成初始布局；提供帮助页。
-- Electron 桌面应用，构建脚本在 `src/ai-desktop/scripts/`。
+- Electron 桌面应用，构建脚本在 `scripts/`。
 
 ## 技术栈
 
@@ -34,25 +34,23 @@
 
 ## 从源码运行
 
-源码在 `src/ai-desktop/`。本仓库不包含安装包。
+源码在仓库根目录。本仓库不包含安装包。
 
 ```bash
-cd src/ai-desktop
 npm install
 npm start            # 先构建再启动 Electron
 npm test
 npm run build
 ```
-
 详细说明见该目录 README。
 
 ## 文档
 
-- [源码 README](src/ai-desktop/README.md)
+- [源码 README](README.original.md)
 
 ## 许可证
 
-`src/ai-desktop/package.json` 声明为 MIT。仓库根目录未附带 LICENSE 文件。
+`package.json` 声明为 MIT。仓库根目录未附带 LICENSE 文件。
 
 ---
 
@@ -64,19 +62,19 @@ npm run build
 
 ## Screenshots
 
-![Light-theme organizer](src/ai-desktop/screenshot-light.png)
+![Light-theme organizer](screenshot-light.png)
 
 *浅色桌面整理 / Light-theme organizer*
 
-![Fences, dark theme](src/ai-desktop/screenshot-fences-dark.png)
+![Fences, dark theme](screenshot-fences-dark.png)
 
 *深色围栏 / Fences, dark theme*
 
-![Fences, light theme](src/ai-desktop/screenshot-fences-light.png)
+![Fences, light theme](screenshot-fences-light.png)
 
 *浅色围栏 / Fences, light theme*
 
-![Onboarding](src/ai-desktop/screenshot-onboarding-light.png)
+![Onboarding](screenshot-onboarding-light.png)
 
 *引导 / Onboarding*
 
@@ -84,7 +82,7 @@ npm run build
 
 - Desktop fences and icon organization, with light and dark themes.
 - Onboarding helps set up the initial layout; a help view is included.
-- Electron desktop app; build scripts live in `src/ai-desktop/scripts/`.
+- Electron desktop app; build scripts live in `scripts/`.
 
 ## Tech stack
 
@@ -94,23 +92,21 @@ npm run build
 
 ## Getting started
 
-Source is under `src/ai-desktop/`. This repository does not include installers.
+Source is at the repository root. This repository does not include installers.
 
 ```bash
-cd src/ai-desktop
 npm install
 npm start            # build, then launch Electron
 npm test
 npm run build
 ```
-
 See that directory's README for details.
 
 ## Documentation
 
-- [源码 README](src/ai-desktop/README.md)
+- [源码 README](README.original.md)
 
 ## License
 
-`src/ai-desktop/package.json` declares MIT. There is no LICENSE file at the repository root.
+`package.json` declares MIT. There is no LICENSE file at the repository root.
 
