@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'"><title>框选</title>
+<style>
+  html,body{margin:0;height:100%;overflow:hidden;background:transparent;font:12px "Segoe UI Variable Text","Segoe UI","Microsoft YaHei UI",sans-serif;user-select:none}
+  .band{position:absolute;inset:0;border-radius:10px;border:1.5px solid color-mix(in srgb,var(--a,#2f9bff) 88%,#fff);background:color-mix(in srgb,var(--a,#2f9bff) 14%,transparent);box-shadow:0 0 0 1px rgba(255,255,255,.28) inset,0 10px 28px rgba(0,0,0,.16);backdrop-filter:blur(2px)}
+  .band::before{content:"";position:absolute;left:0;right:0;top:0;height:28px;border-radius:7px 7px 0 0;background:color-mix(in srgb,var(--a,#2f9bff) 30%,transparent)}
+  .tag{position:absolute;left:10px;top:6px;display:flex;gap:8px;align-items:center;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.45);font-weight:600;white-space:nowrap}
+  .tag .n{font-weight:500;opacity:.92;background:rgba(0,0,0,.28);padding:1px 7px;border-radius:9px}
+  .hint{position:absolute;right:10px;bottom:8px;color:#fff;opacity:.85;text-shadow:0 1px 2px rgba(0,0,0,.5);font-size:11px}
+  body.small .hint,body.small .tag .n{display:none}
+</style></head>
+<body><div class="band"><div class="tag"><span id="t">新建格子</span><span class="n" id="n"></span></div><div class="hint" id="h">松开鼠标选择操作</div></div>
+<script src="rubber.js"></script></body></html>

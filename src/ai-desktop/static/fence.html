@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'"><link rel="stylesheet" href="fonts/remixicon.css"><link rel="stylesheet" href="style.css"><title>格子</title></head>
+<body class="fence">
+  <div id="box" class="box">
+    <div id="bar" class="bar">
+      <div class="bar-side left"><button id="back" class="tb back" title="返回上级文件夹"><i class="ri-arrow-left-s-line"></i></button></div>
+      <div class="label"><span id="boxIcon" class="box-icon"></span><span id="title" class="title" title="双击重命名（F2）">格子</span><span id="count" class="count">0</span><i id="lock" class="ri-lock-2-fill lock" title="已锁定位置和大小"></i></div>
+      <div class="bar-side right bar-actions">
+        <button id="view" class="tb" title="切换视图"></button>
+        <button id="collapse" class="tb chev" title="卷起"><i class="ri-arrow-up-s-line"></i></button>
+        <button id="menu" class="tb" title="更多"><i class="ri-more-fill"></i></button>
+      </div>
+    </div>
+    <div id="tabs" class="ftabs" hidden></div>
+    <div id="crumbs" class="crumbs"></div>
+    <div id="body" class="body"><div id="grid" class="grid"></div></div>
+  </div>
+  <div class="grip n" data-mode="n"></div><div class="grip s" data-mode="s"></div><div class="grip e" data-mode="e"></div><div class="grip w" data-mode="w"></div>
+  <div class="grip ne" data-mode="ne"></div><div class="grip nw" data-mode="nw"></div><div class="grip se" data-mode="se"></div><div class="grip sw" data-mode="sw"></div>
+  <script src="fence.js"></script>
+</body></html>

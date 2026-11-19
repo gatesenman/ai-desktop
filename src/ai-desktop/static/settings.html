@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'"><link rel="stylesheet" href="fonts/remixicon.css"><link rel="stylesheet" href="style.css"><title>AI 桌面整理 - 设置</title></head>
+<body class="settings">
+  <div class="titlebar">
+    <img class="tlogo" src="icon.png" alt=""><span class="tname">设置</span><span id="saved" class="saved"><i class="ri-check-line"></i>已自动保存</span>
+    <div class="wctl"><button id="wMin" title="最小化"><i class="ri-subtract-line"></i></button><button id="wMax" title="最大化"><i class="ri-checkbox-blank-line"></i></button><button id="wClose" class="x" title="关闭"><i class="ri-close-line"></i></button></div>
+  </div>
+  <div class="shell">
+    <nav class="sidebar"><div class="nav-search"><i class="ri-search-line"></i><input id="setSearch" type="search" placeholder="搜索设置…" spellcheck="false"></div>
+      <div class="profile"><img src="icon.png" alt=""><div><b>AI 桌面整理</b><small id="ver"></small></div></div>
+      <button class="nav-item" data-sec="ai"><i class="ri-sparkling-2-line"></i>AI 模型</button>
+      <button class="nav-item" data-sec="aifeat"><i class="ri-magic-line"></i>AI 功能</button>
+      <div class="nav-sep"></div>
+      <button class="nav-item" data-sec="look"><i class="ri-palette-line"></i>外观</button>
+      <button class="nav-item" data-sec="boxes"><i class="ri-layout-masonry-line"></i>格子与桌面</button>
+      <button class="nav-item" data-sec="rules"><i class="ri-filter-3-line"></i>整理规则</button>
+      <button class="nav-item" data-sec="learn"><i class="ri-lightbulb-flash-line"></i>学习纠正</button>
+      <button class="nav-item" data-sec="pages"><i class="ri-pages-line"></i>桌面页与快照</button>
+      <button class="nav-item" data-sec="keys"><i class="ri-keyboard-line"></i>快捷键</button>
+      <button class="nav-item" data-sec="organize"><i class="ri-layout-grid-line"></i>整理</button>
+      <button class="nav-item" data-sec="backup"><i class="ri-save-3-line"></i>备份与启动</button>
+      <button class="nav-item" data-sec="about"><i class="ri-information-line"></i>关于</button>
+    </nav>
+    <main class="content">
+
+      <section class="page" id="sec-ai">
+        <div class="ph"><h1>AI 模型</h1><span id="aiState" class="pill"></span></div>
+        <p class="desc">使用任意 OpenAI 兼容接口，为智能整理、自然语言查找和 AI 助手提供能力。</p>
+        <div class="group-title">服务商</div>
+        <div id="presets" class="presets"></div>
+        <div class="group-title">连接</div>
+        <div class="card">
+          <div class="setting"><div class="sl"><b>API 地址</b><small>填写到 /v1 即可</small></div><input id="baseURL" class="field wide" spellcheck="false" placeholder="https://api.deepseek.com/v1"></div>
+          <div class="setting"><div class="sl"><b>API Key</b><small>仅保存在本机</small></div><div class="inline"><input id="apiKey" class="field wide" type="password" spellcheck="false" placeholder="sk-…"><button id="toggleKey" class="icon-btn" title="显示/隐藏"><i class="ri-eye-line"></i></button></div></div>
+          <div class="setting"><div class="sl"><b>模型</b><small>例如 deepseek-chat、qwen-plus</small></div><input id="model" class="field wide" spellcheck="false"></div>
+          <div class="setting"><div class="sl"><b>温度</b><small>越低越稳定</small></div><div class="inline"><input id="temperature" type="range" min="0" max="1.5" step="0.1"><span id="tempVal" class="val"></span></div></div>
+          <div class="setting"><div class="sl"><b>连接测试</b><small>发送一条极短的测试消息</small></div><div class="inline"><span id="testOut" class="status-line"></span><button id="test" class="btn"><i class="ri-flashlight-line"></i>测试连接</button></div></div>
+        </div>
+        <div class="callout"><i class="ri-shield-check-line"></i><div><b>隐私</b><p>AI 整理与 AI 查找只发送<strong>文件名、类型和修改时间</strong>，不发送文件内容；只有在你主动点击「AI 总结」时才会发送该文件的文本。未配置时所有功能会自动降级为本地规则。</p></div></div>
+      </section>
+
+      <section class="page" id="sec-aifeat">
+        <div class="ph"><h1>AI 功能</h1><span id="aiState2" class="pill"></span></div>
+        <p class="desc">AI 只在你需要时介入：先给出方案和理由，确认后才执行，且全部可撤销。未配置模型时自动使用本地规则。</p>
+        <div class="actions-grid four">
+          <button class="action" data-action="hub"><span class="fi" style="--g:#9b6bff"><i class="ri-sparkling-2-line"></i></span><b>AI 整理建议</b><small>分组 + 每组理由，可逐组取舍</small></button>
+          <button class="action" data-action="cleanup"><span class="fi" style="--g:#ef5350"><i class="ri-brush-3-line"></i></span><b>桌面清理</b><small>重复、过期、大文件、安装包</small></button>
+          <button class="action" data-action="rename"><span class="fi" style="--g:#2f9bff"><i class="ri-edit-2-line"></i></span><b>批量重命名</b><small>AI 给出规范文件名，可撤销</small></button>
+          <button class="action" data-action="briefing"><span class="fi" style="--g:#14b8a6"><i class="ri-newspaper-line"></i></span><b>今日简报</b><small>桌面变化、待办与建议</small></button>
+        </div>
+        <div class="group-title">学习与搜索</div>
+        <div class="card">
+          <div class="setting"><div class="sl"><b>从我的调整中学习</b><small>多次手动把同类文件拖进同一个格子后，提示一键生成规则；AI 整理时参考这些偏好</small></div><label class="switch"><input id="learnFromMoves" type="checkbox"><span></span></label></div>
+          <div class="setting"><div class="sl"><b>本地内容索引</b><small id="idxState">为桌面上的 txt / md / pdf / docx 建立本地全文索引，搜索时可按内容找到文件；索引只保存在本机</small></div><div class="inline"><label class="switch"><input id="contentIndex" type="checkbox"><span></span></label><button id="rebuildIdx" class="btn"><i class="ri-refresh-line"></i>重建</button></div></div>
+          <div class="setting"><div class="sl"><b>语义向量模型（可选）</b><small>填写后用 /embeddings 接口做语义搜索，例如 Ollama 的 bge-m3、硅基流动的 BAAI/bge-m3；留空则只用本地关键词索引</small></div><input id="embedModel" class="field wide" spellcheck="false" placeholder="留空 = 关闭"></div>
+          <div class="setting"><div class="sl"><b>每天首次启动时显示今日简报</b><small>汇总新增文件、清理建议与可能的待办</small></div><label class="switch"><input id="dailyBriefing" type="checkbox"><span></span></label></div>
+        </div>
+        <div class="group-title">哪些数据会离开本机</div>
+        <div class="card privacy">
+          <div class="prow"><span class="fi sm" style="--g:#3dbb63"><i class="ri-shield-check-line"></i></span><div><b>从不上传</b><small>文件内容（除非你主动「总结 / 翻译 / 重命名时参考内容」）、内容索引、清理扫描结果、规则、布局</small></div></div>
+          <div class="prow"><span class="fi sm" style="--g:#e8a92c"><i class="ri-file-list-3-line"></i></span><div><b>仅文件名级元数据</b><small>AI 整理、AI 查找、AI 命令、自然语言规则、简报：发送文件名、类型、大小、修改时间</small></div></div>
+          <div class="prow"><span class="fi sm" style="--g:#5a6578"><i class="ri-computer-line"></i></span><div><b>完全本地</b><small>选择 Ollama 预设即可让所有 AI 请求只在本机运行</small></div></div>
+        </div>
+      </section>
+
+      <section class="page" id="sec-look">
+        <div class="ph"><h1>外观</h1></div>
+        <p class="desc">让格子与你的壁纸融为一体。</p>
+        <div class="card">
+          <div class="setting"><div class="sl"><b>主题</b><small>浅色、深色或跟随 Windows</small></div>
+            <div id="theme" class="segment"><button data-v="auto"><i class="ri-contrast-2-line"></i>跟随系统</button><button data-v="light"><i class="ri-sun-line"></i>浅色</button><button data-v="dark"><i class="ri-moon-line"></i>深色</button></div></div>
+          <div class="setting"><div class="sl"><b>格子不透明度</b><small>默认值，每个格子可在「外观」中单独设置</small></div><div class="inline"><input id="opacity" type="range" min="0.3" max="1" step="0.05"><span id="opacityVal" class="val"></span></div></div>
+          <div class="setting"><div class="sl"><b>图标大小</b></div><div class="inline"><input id="iconSize" type="range" min="28" max="64" step="4"><span id="iconSizeVal" class="val"></span></div></div>
+          <div class="setting"><div class="sl"><b>变色龙模式</b><small>图标平时淡出融入壁纸，鼠标移入格子再显现（Fences Chameleon）</small></div><label class="switch"><input id="chameleon" type="checkbox"><span></span></label></div>
+          <div class="setting"><div class="sl"><b>图标着色（所有格子）</b><small>像 Fences 6 一样给所有格子里的图标统一色调，减少视觉干扰；单个格子的着色设置优先</small></div><label class="switch"><input id="tintAll" type="checkbox"><span></span></label></div>
+          <div class="setting"><div class="sl"><b>着色颜色与强度</b><small>留空颜色则跟随主题强调色</small></div><div class="inline"><input id="tintColor" type="color" value="#4f7cff"><button id="tintColorReset" class="btn sm ghost" title="跟随主题强调色">跟随主题</button><input id="tintStrength" type="range" min="0.2" max="1" step="0.05"><span id="tintStrengthVal" class="val"></span></div></div>
+          <div class="setting win-only"><div class="sl"><b>亚克力材质</b><small>Windows 11 系统模糊效果（实验）</small></div><label class="switch"><input id="acrylic" type="checkbox"><span></span></label></div>
+        </div>
+      </section>
+
+      <section class="page" id="sec-boxes">
+        <div class="ph"><h1>格子与桌面</h1></div>
+        <p class="desc">控制格子如何停留在桌面上。</p>
+        <div class="group-title">格子行为</div>
+        <div class="card">
+          <div class="setting"><div class="sl"><b>卷起格子</b><small>点击标题栏把格子卷起为一条标题。双击格子名称始终进入重命名（与卷起设置无关）</small></div><div id="rollupOn" class="segment"><button data-v="dblclick">双击标题栏</button><button data-v="click">单击标题栏</button></div></div>
+          <div class="setting"><div class="sl"><b>悬停预览</b><small>鼠标停在卷起的格子上时临时展开</small></div><label class="switch"><input id="hoverPeek" type="checkbox"><span></span></label></div>
+          <div class="setting"><div class="sl"><b>吸附网格</b><small>拖动或调整大小时对齐到网格</small></div><div id="snapGrid" class="segment"><button data-v="0">关闭</button><button data-v="8">8 px</button><button data-v="16">16 px</button><button data-v="24">24 px</button></div></div>
+          <div class="setting"><div class="sl"><b>吸附其他格子和屏幕边缘</b><small>拖动时显示粉色对齐参考线</small></div><label class="switch"><input id="snapEdges" type="checkbox"><span></span></label></div>
+          <div class="setting"><div class="sl"><b>格子间距</b><small>吸附时与相邻格子保持的距离（Fences「保持间距」）</small></div><div id="groupGap" class="segment"><button data-v="0">0</button><button data-v="4">4 px</button><button data-v="8">8 px</button><button data-v="16">16 px</button></div></div>
+          <div class="setting"><div class="sl"><b>按图标整数倍调整大小</b><small>调整格子大小时自动对齐到整行整列图标，不留半个图标</small></div><label class="switch"><input id="iconMultiples" type="checkbox"><span></span></label></div>
+          <div class="setting"><div class="sl"><b>标题栏显示</b><small>「悬停时」让格子平时只显示图标，鼠标移入才出现标题栏</small></div><div id="headerMode" class="segment"><button data-v="always">始终</button><button data-v="hover">悬停时</button></div></div>
+          <div class="setting"><div class="sl"><b>不活动时隐藏滚动条</b><small>鼠标离开格子后隐藏滚动条，界面更干净</small></div><label class="switch"><input id="hideScrollbars" type="checkbox"><span></span></label></div>
+        </div>
+        <div class="group-title">框选与右键 <span class="muted">仅 Windows</span></div>
+        <div class="card">
+          <div class="setting win-only"><div class="sl"><b>在桌面上框选创建格子</b><small>按住所选鼠标键在桌面空白处拖出矩形，松开后选择「在此创建格子」或「用框选的图标创建格子」。默认右键拖动，保留系统左键框选</small></div><div id="drawFence" class="segment"><button data-v="right">右键拖动</button><button data-v="left">左键拖动</button><button data-v="off">关闭</button></div></div>
+          <div class="setting win-only"><div class="sl"><b>桌面空白处右键</b><small>「应用菜单」显示 AI 桌面的完整菜单（含「显示 Windows 桌面菜单」）；「Windows 菜单」保持系统菜单，可通过级联项使用本应用</small></div><div id="desktopRightClick" class="segment"><button data-v="app">应用菜单</button><button data-v="explorer">Windows 菜单</button></div></div>
+          <div class="setting win-only"><div class="sl"><b>文件右键使用系统菜单</b><small>在格子里右键文件时显示资源管理器原生菜单（打开方式、发送到、压缩、属性…），并附加「从格子移除 / 移动到格子」</small></div><label class="switch"><input id="nativeItemMenu" type="checkbox"><span></span></label></div>
+        </div>
+        <div class="group-title">桌面层 <span class="muted">仅 Windows</span></div>
+        <div class="card">
+          <div class="setting win-only"><div class="sl"><b>失焦后沉底</b><small>点击其他窗口后，格子自动退到所有窗口下方</small></div><label class="switch"><input id="keepBottom" type="checkbox"><span></span></label></div>
+          <div class="setting win-only"><div class="sl"><b>双击桌面空白处快速隐藏</b><small>像 Fences 一样一键清空桌面；格子可单独设置「快速隐藏时保留」</small></div><label class="switch"><input id="dblClickDesktop" type="checkbox"><span></span></label></div>
+          <div class="setting win-only"><div class="sl"><b>系统右键菜单中的级联项</b><small>在 Windows 桌面右键菜单里加入「AI 桌面整理」级联项（Win11 在「显示更多选项」里）。仅写入当前用户注册表，卸载时自动清除</small></div><label class="switch"><input id="desktopContextMenu" type="checkbox"><span></span></label></div>
+          <div class="setting win-only"><div class="sl"><b>快速隐藏的内容</b><small>与 Fences 相同的三种模式；格子可单独设置「快速隐藏时保留」</small></div><div id="quickHideMode" class="segment"><button data-v="all">全部（推荐）</button><button data-v="fences">仅格子</button><button data-v="icons">格子外的图标</button></div></div>
+          <div class="setting win-only"><div class="sl"><b>嵌入桌面（实验）</b><small>挂到桌面图标层，按 Win+D 后格子仍可见</small></div><label class="switch"><input id="embedDesktop" type="checkbox"><span></span></label></div>
+        </div>
+        <div class="group-title">内容</div>
+        <div class="card">
+          <div class="setting win-only"><div class="sl"><b>包含公用桌面</b><small>C:\Users\Public\Desktop</small></div><label class="switch"><input id="scanPublicDesktop" type="checkbox"><span></span></label></div>
+          <div class="setting"><div class="sl"><b>「最近文件」数量</b><small>最近文件格子显示的文件数</small></div><div class="inline"><input id="recentCount" type="range" min="4" max="40" step="2"><span id="recentCountVal" class="val"></span></div></div>
+          <div class="setting"><div class="sl"><b>新建</b><small>文件夹映射可把「下载」、网盘同步目录等任意文件夹放到桌面</small></div><div class="inline"><button class="btn" data-action="new-box"><i class="ri-add-line"></i>格子</button><button class="btn" data-action="portal"><i class="ri-folder-open-line"></i>文件夹映射</button><button class="btn" data-action="recent-box"><i class="ri-time-line"></i>最近文件</button></div></div>
+        </div>
+      </section>
+
+      <section class="page" id="sec-rules">
+        <div class="ph"><h1>整理规则</h1><span id="rulesState" class="pill"></span></div>
+        <p class="desc">像 Fences 一样，用规则把桌面上的文件自动放进指定格子。规则<b>从上到下</b>依次匹配，第一条匹配的规则生效；只改变格子分组，不移动文件。</p>
+        <div class="nlrule">
+          <span class="fi" style="--g:#9b6bff"><i class="ri-sparkling-2-line"></i></span>
+          <input id="nlText" class="field" spellcheck="false" placeholder="用一句话描述规则，例如：把所有发票放到财务格子">
+          <button id="nlGo" class="btn primary"><i class="ri-magic-line"></i>生成规则</button>
+        </div>
+        <div class="nlhints"><span>试试：</span><button class="chip">把所有发票放到财务格子</button><button class="chip">超过 30 天的安装包放进待清理</button><button class="chip">名字里有 周报 的文件放到工作</button></div>
+        <div id="nlDraft"></div>
+        <div class="rules-bar">
+          <button id="addRule" class="btn"><i class="ri-add-line"></i>新建规则</button>
+          <button id="applyRules" class="btn"><i class="ri-play-circle-line"></i>立即应用到桌面</button>
+          <span class="grow"></span>
+          <label class="check"><input id="autoPlace" type="checkbox"><span>新文件自动归位</span></label>
+        </div>
+        <div id="rules" class="rules"></div>
+      </section>
+
+
+      <section class="page" id="sec-learn">
+        <div class="ph"><h1>学习纠正</h1><span id="learnState" class="pill"></span></div>
+        <p class="desc">你手动把文件拖进格子时，会记下偏好。累计到阈值次数后提示生成规则；AI 整理也会参考这些记录。可在此查看、删除或一键生成规则。</p>
+        <div class="card">
+          <div class="setting"><div class="sl"><b>从我的调整中学习</b><small>关闭后不再提示生成规则，也不再写入新纠正（已有记录仍可手动管理）</small></div><label class="switch"><input id="learnFromMoves2" type="checkbox"><span></span></label></div>
+          <div class="setting"><div class="sl"><b>提示生成规则的最低次数</b><small>同一扩展名多次拖入同一格子后才提示（2–10）</small></div><div class="inline"><input id="learnRuleMin" type="range" min="2" max="10" step="1"><span id="learnRuleMinVal" class="val"></span></div></div>
+        </div>
+        <div class="rules-bar">
+          <button id="learnRefresh" class="btn"><i class="ri-refresh-line"></i>刷新</button>
+          <span class="grow"></span>
+          <button id="learnClear" class="btn danger"><i class="ri-delete-bin-6-line"></i>清空全部</button>
+        </div>
+        <div id="learnList" class="rules"></div>
+      </section>
+
+      <section class="page" id="sec-pages">
+        <div class="ph"><h1>桌面页与快照</h1></div>
+        <p class="desc">把桌面分成多个页面（工作 / 娱乐 / 项目…），每页有自己的格子；快照可保存并恢复整套布局。</p>
+        <div class="group-title">桌面页 <span id="pageKeys" class="muted"></span></div>
+        <div id="pageList" class="card plist"></div>
+        <div class="inline gap"><button id="addPage" class="btn"><i class="ri-add-line"></i>新建桌面页</button></div>
+        <div class="group-title">布局快照</div>
+        <div class="card">
+          <div class="setting"><div class="sl"><b>保存当前布局</b><small>包含所有桌面页、格子位置、颜色和分组</small></div><div class="inline"><input id="snapName" class="field" placeholder="快照名称（可选）" spellcheck="false"><button id="snapSave" class="btn primary"><i class="ri-camera-lens-line"></i>保存快照</button></div></div>
+          <div id="snapList" class="slist"></div>
+        </div>
+        <div class="group-title">多显示器 / 分辨率 / DPI</div>
+        <div class="card">
+          <div class="setting"><div class="sl"><b>按分辨率自动记忆布局</b><small id="resNow">切换显示器或分辨率时，自动恢复该分辨率下的格子位置</small></div><label class="switch"><input id="autoResolution" type="checkbox"><span></span></label></div>
+          <div class="setting"><div class="sl"><b>DPI 与多显示器说明</b><small id="dpiHint">布局键包含物理分辨率与缩放因子（例如 1920x1080@1.25）。换主显示器、改系统缩放，或把格子拖到另一块屏后，会按最近显示器的工作区重新吸附。建议在常用分辨率下各保存一份布局快照。</small></div></div>
+        </div>
+      </section>
+
+      <section class="page" id="sec-keys">
+        <div class="ph"><h1>快捷键</h1></div>
+        <p class="desc warn" id="hkConflict" hidden></p>
+        <p class="desc">点击输入框后直接按下组合键；Backspace 清空。</p>
+        <div class="card">
+          <div class="setting"><div class="sl"><b>快速搜索</b><div id="hkSearchState"></div></div><input id="hotkeySearch" class="field hotkey" readonly></div>
+          <div class="setting"><div class="sl"><b>AI 助手</b><div id="hkChatState"></div></div><input id="hotkeyChat" class="field hotkey" readonly></div>
+          <div class="setting"><div class="sl"><b>快速隐藏 / 显示所有格子</b><div id="hkToggleState"></div></div><input id="hotkeyToggle" class="field hotkey" readonly></div>
+          <div class="setting"><div class="sl"><b>Peek：把格子置于所有窗口之上</b><div id="hkPeekState"></div></div><input id="hotkeyPeek" class="field hotkey" readonly></div>
+          <div class="setting"><div class="sl"><b>下一个桌面页</b><div id="hkPageNextState"></div></div><input id="hotkeyPageNext" class="field hotkey" readonly></div>
+          <div class="setting"><div class="sl"><b>上一个桌面页</b><div id="hkPagePrevState"></div></div><input id="hotkeyPagePrev" class="field hotkey" readonly></div>
+        </div>
+        <div class="group-title">格子内</div>
+        <div class="card keys-table">
+          <div><span>方向键</span><b>移动选择</b></div><div><span>Enter</span><b>打开</b></div><div><span>Ctrl + A</span><b>全选</b></div>
+          <div><span>F2</span><b>重命名格子</b></div><div><span>Ctrl + Z</span><b>撤销整理</b></div><div><span>Ctrl / Shift + 单击</span><b>多选</b></div>
+          <div><span>双击标题栏</span><b>卷起 / 展开</b></div><div><span>Backspace</span><b>文件夹映射返回上级</b></div><div><span>Esc</span><b>退出 Peek</b></div>
+          <div><span>F1 / ?</span><b>快捷键一览</b></div>
+        </div>
+      </section>
+
+      <section class="page" id="sec-organize">
+        <div class="ph"><h1>整理</h1></div>
+        <p class="desc">默认是<b>虚拟整理</b>：只在格子中分组显示，不会移动或删除你的文件，所有操作都可撤销。</p>
+        <div class="actions-grid">
+          <button class="action" data-action="organize"><span class="fi" style="--g:#2f9bff"><i class="ri-magic-line"></i></span><b>一键整理</b><small>先按规则，再按文件类型归入格子</small></button>
+          <button class="action" data-action="ai-organize"><span class="fi" style="--g:#9b6bff"><i class="ri-sparkling-2-line"></i></span><b>AI 智能整理</b><small>按用途分组并说明理由，确认后应用</small></button>
+          <button class="action" data-action="undo-layout"><span class="fi" style="--g:#14b8a6"><i class="ri-arrow-go-back-line"></i></span><b>撤销整理</b><small>恢复到上一次的格子布局</small></button>
+          <button class="action" data-action="reset-layout"><span class="fi" style="--g:#f08c2e"><i class="ri-refresh-line"></i></span><b>重置布局</b><small>重新生成默认分类格子</small></button>
+        </div>
+        <div class="callout warn"><i class="ri-folder-transfer-line"></i><div><b>真正移动文件？</b><p>托盘菜单「更多整理 › 整理到文件夹」会把文件移动到「桌面\已整理\分类」，执行前二次确认，并可「撤销上次移动」。</p></div></div>
+      </section>
+
+      <section class="page" id="sec-backup">
+        <div class="ph"><h1>备份与启动</h1></div>
+        <p class="desc">导出设置和格子布局，在重装系统或换电脑后一键恢复。</p>
+        <div class="card">
+          <div class="setting"><div class="sl"><b>开机自启</b><small>登录 Windows 后在后台启动</small></div><label class="switch"><input id="autoStart" type="checkbox"><span></span></label></div>
+          <div class="setting"><div class="sl"><b>导出配置</b><small>保存为 JSON 文件</small></div><div class="inline"><label class="check"><input id="exportKey" type="checkbox"><span>包含 API Key</span></label><button id="export" class="btn"><i class="ri-upload-2-line"></i>导出</button></div></div>
+          <div class="setting"><div class="sl"><b>导入配置</b><small>覆盖当前设置与格子布局（可撤销布局）</small></div><button id="import" class="btn"><i class="ri-download-2-line"></i>导入</button></div>
+        </div>
+      </section>
+
+      <section class="page" id="sec-about">
+        <div class="ph"><h1>关于</h1></div>
+        <div class="about-hero"><img src="icon.png" alt=""><div><h2>AI 桌面整理</h2><p class="muted">类似「腾讯桌面整理」的 AI 增强版桌面收纳工具</p></div></div>
+        <div id="aboutList" class="card kvs"></div>
+        <div class="inline gap"><button class="btn" data-action="onboarding"><i class="ri-rocket-2-line"></i>重新打开新手引导</button><button class="btn" data-action="search"><i class="ri-search-line"></i>快速搜索</button><button class="btn" data-action="chat"><i class="ri-sparkling-2-line"></i>AI 助手</button></div>
+      </section>
+    </main>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="settings.js"></script>
+</body></html>

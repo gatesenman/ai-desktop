@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'"><link rel="stylesheet" href="fonts/remixicon.css"><link rel="stylesheet" href="style.css"><title>AI 工作台</title></head>
+<body class="settings hub">
+  <div class="titlebar">
+    <span class="hublogo"><i class="ri-sparkling-2-fill"></i></span><span class="tname">AI 工作台</span><span id="model" class="pill"></span>
+    <div class="wctl"><button id="wMin" title="最小化"><i class="ri-subtract-line"></i></button><button id="wMax" title="最大化"><i class="ri-checkbox-blank-line"></i></button><button id="wClose" class="x" title="关闭"><i class="ri-close-line"></i></button></div>
+  </div>
+  <div class="shell">
+    <nav class="sidebar">
+      <button class="nav-item" data-sec="briefing"><i class="ri-newspaper-line"></i>今日简报</button>
+      <button class="nav-item" data-sec="organize"><i class="ri-sparkling-2-line"></i>AI 整理建议</button>
+      <button class="nav-item" data-sec="cleanup"><i class="ri-brush-3-line"></i>桌面清理</button>
+      <button class="nav-item" data-sec="rename"><i class="ri-edit-2-line"></i>批量重命名</button>
+      <button class="nav-item" data-sec="projects"><i class="ri-briefcase-4-line"></i>项目空间</button>
+      <div class="nav-sep"></div>
+      <button class="nav-item" data-go="search"><i class="ri-terminal-box-line"></i>AI 命令栏</button>
+      <button class="nav-item" data-go="chat"><i class="ri-chat-smile-2-line"></i>AI 助手</button>
+      <button class="nav-item" data-go="settings-rules"><i class="ri-filter-3-line"></i>整理规则</button>
+      <div class="side-note"><i class="ri-shield-check-line"></i><span>AI 只看到文件名、类型和时间；清理扫描、内容索引和待办提取都在本机完成。</span></div>
+    </nav>
+    <main class="content">
+      <section class="page" id="sec-briefing">
+        <div class="hero" id="bHero"></div>
+        <div id="bBody"></div>
+      </section>
+
+      <section class="page wide" id="sec-organize">
+        <div class="ph"><h1>AI 整理建议</h1><span id="oVia" class="pill"></span><span class="grow"></span><button id="oRegen" class="btn"><i class="ri-refresh-line"></i>重新生成</button></div>
+        <p class="desc" id="oNote">AI 按用途给出分组和理由。勾选想要的分组，可直接修改格子名称；应用后只调整格子分组，不移动文件，可撤销。</p>
+        <div id="oGroups" class="ogrid"></div>
+        <div class="abar" id="oBar"><span id="oSum"></span><span class="grow"></span><button id="oApply" class="btn primary"><i class="ri-check-double-line"></i>应用所选分组</button></div>
+      </section>
+
+      <section class="page wide" id="sec-cleanup">
+        <div class="ph"><h1>桌面清理</h1><span class="pill ok"><i class="dot"></i>本地扫描</span><span class="grow"></span><button id="cScan" class="btn"><i class="ri-refresh-line"></i>重新扫描</button></div>
+        <p class="desc">找出重复文件（按内容比对）、长期未动的文件、大文件、安装包、临时文件和空文件夹。默认只做标记，移到回收站前会再次确认。</p>
+        <div id="cStats" class="cstats"></div>
+        <div id="cList"></div>
+        <div class="abar" id="cBar"><span id="cSum"></span><span class="grow"></span>
+          <button id="cBox" class="btn"><i class="ri-inbox-archive-line"></i>放入「待清理」格子</button>
+          <button id="cArchive" class="btn"><i class="ri-archive-drawer-line"></i>归档到文件夹</button>
+          <button id="cTrash" class="btn danger"><i class="ri-delete-bin-6-line"></i>移到回收站</button></div>
+      </section>
+
+
+      <section class="page wide" id="sec-projects">
+        <div class="ph"><h1>智能项目空间</h1><span class="pill ok"><i class="dot"></i>本地聚类</span><span class="grow"></span><button id="pScan" class="btn"><i class="ri-refresh-line"></i>重新扫描</button></div>
+        <p class="desc">根据文件名中的客户/项目实体与时间邻近，自动建议把散落的文档、表格、设计稿聚合成一个格子（引用，不移动磁盘文件）。</p>
+        <div id="pList" class="ogrid"></div>
+        <div class="abar" id="pBar" hidden><span id="pSum"></span><span class="grow"></span></div>
+      </section>
+
+      <section class="page wide" id="sec-rename">
+        <div class="ph"><h1>批量重命名</h1><span class="grow"></span><button id="rUndo" class="btn"><i class="ri-arrow-go-back-line"></i>撤销上次重命名</button></div>
+        <p class="desc">AI 根据文件名（可选：文件开头内容）给出规范的新名字，你可以逐个修改后再应用。</p>
+        <div class="card rcfg">
+          <div class="setting"><div class="sl"><b id="rCount">未选择文件</b><small id="rPickHint">从桌面选择，或一键挑出命名混乱的文件（副本、(1)、IMG_、微信图片…）</small></div><div class="inline"><button id="rMessy" class="btn"><i class="ri-magic-line"></i>挑出命名混乱的</button><button id="rPick" class="btn"><i class="ri-file-add-line"></i>选择文件…</button></div></div>
+          <div class="setting"><div class="sl"><b>命名方式</b></div><div id="rStyle" class="segment"><button data-v="smart" class="active"><i class="ri-sparkling-2-line"></i>AI 智能</button><button data-v="date">日期前缀</button><button data-v="tidy">仅清理</button></div></div>
+          <div class="setting"><div class="sl"><b>额外要求</b><small>例如：统一用英文；客户名放最前面</small></div><input id="rHint" class="field wide" spellcheck="false" placeholder="可选"></div>
+          <div class="setting"><div class="sl"><b>参考文件开头内容</b><small>会把每个文件开头约 300 字发送给 AI，以便起出更准确的名字</small></div><label class="switch"><input id="rContent" type="checkbox"><span></span></label></div>
+        </div>
+        <div class="inline gap"><button id="rGo" class="btn primary"><i class="ri-sparkling-2-line"></i>生成命名建议</button><span id="rNote" class="muted small"></span></div>
+        <div id="rTable" class="rtable"></div>
+        <div class="abar" id="rBar"><span id="rSum"></span><span class="grow"></span><button id="rApply" class="btn primary"><i class="ri-check-line"></i>应用重命名</button></div>
+      </section>
+    </main>
+  </div>
+  <script src="hub.js"></script>
+</body></html>

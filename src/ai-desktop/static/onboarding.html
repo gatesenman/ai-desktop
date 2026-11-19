@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'"><link rel="stylesheet" href="fonts/remixicon.css"><link rel="stylesheet" href="style.css"><title>欢迎使用 AI 桌面整理</title></head>
+<body class="onboarding">
+  <aside class="ob-art">
+    <div class="ob-logo"><img src="icon.png" alt=""></div>
+    <div class="ob-name">AI 桌面整理</div>
+    <div class="ob-tag">让桌面井井有条</div>
+    <div class="mock">
+      <div class="mbox"><div class="mh"><i class="ri-apps-2-line"></i>常用软件</div><div class="mg"><i></i><i></i><i></i><i></i></div></div>
+      <div class="mbox b2"><div class="mh"><i class="ri-file-text-line"></i>工作文档</div><div class="mg"><i></i><i></i><i></i></div></div>
+      <div class="mbox b3"><div class="mh"><i class="ri-image-line"></i>图片</div><div class="mg"><i></i><i></i></div></div>
+    </div>
+    <div class="ob-dots" role="tablist" aria-label="引导进度"><i class="ob-dot" data-dot="0"></i><i class="ob-dot" data-dot="1"></i><i class="ob-dot" data-dot="2"></i><i class="ob-dot" data-dot="3"></i></div>
+  </aside>
+  <section class="ob-main">
+    <div class="ob-top"><span id="stepNo"></span><button id="close" class="tb" title="关闭"><i class="ri-close-line"></i></button></div>
+
+    <div class="ob-panel" data-step="0" role="tabpanel">
+      <h1>欢迎使用 AI 桌面整理</h1>
+      <p class="lead">把杂乱的桌面图标收进整洁的格子里，并用 AI 帮你分类、找文件、读文档。</p>
+      <div class="feat"><span class="fi" style="--g:#2f9bff"><i class="ri-layout-masonry-line"></i></span><div><b>桌面收纳格子</b><small>拖动、折叠、换色，双击打开文件，可直接拖到其他程序</small></div></div>
+      <div class="feat"><span class="fi" style="--g:#9b6bff"><i class="ri-sparkling-2-line"></i></span><div><b>AI 智能整理与查找</b><small>按用途自动分组；用一句话找到「上周的那个报价单」</small></div></div>
+      <div class="feat"><span class="fi" style="--g:#14b8a6"><i class="ri-shield-check-line"></i></span><div><b>安全，不动你的文件</b><small>默认只做虚拟分组，不移动、不删除；所有整理都可撤销</small></div></div>
+    </div>
+
+    <div class="ob-panel" data-step="1" role="tabpanel">
+      <h1>选择整理方式</h1>
+      <p class="lead">随时可以在托盘菜单或格子右键里重新整理。</p>
+      <button class="opt active" data-v="rules"><span class="fi" style="--g:#2f9bff"><i class="ri-magic-line"></i></span><div><b>按文件类型整理 <em>推荐</em></b><small>文档、图片、视频、压缩包、程序/快捷方式、文件夹……</small></div><i class="ri-checkbox-circle-fill ck"></i></button>
+      <button class="opt" data-v="ai"><span class="fi" style="--g:#9b6bff"><i class="ri-sparkling-2-line"></i></span><div><b>AI 智能整理</b><small>按用途分组（如「工作文档」「常用软件」），需配置 AI</small></div><i class="ri-checkbox-circle-fill ck"></i></button>
+      <button class="opt" data-v="keep"><span class="fi" style="--g:#7b8798"><i class="ri-hand-heart-line"></i></span><div><b>保持当前布局</b><small>稍后自己新建和拖放格子</small></div><i class="ri-checkbox-circle-fill ck"></i></button>
+    </div>
+
+    <div class="ob-panel" data-step="2" role="tabpanel">
+      <h1>连接 AI 模型 <small>可选</small></h1>
+      <p class="lead">支持任意 OpenAI 兼容接口。只发送文件名、类型和修改时间；文件内容仅在你主动「AI 总结」时发送。</p>
+      <div class="frow"><label>服务商</label><select id="obPreset" class="field"><option value="deepseek">DeepSeek</option><option value="qwen">通义千问</option><option value="openai">OpenAI</option><option value="moonshot">Kimi</option><option value="ollama">Ollama（本地）</option></select></div>
+      <div class="frow"><label>API Key</label><input id="obKey" class="field" type="password" placeholder="sk-…" spellcheck="false"></div>
+      <div class="frow"><label></label><button id="obTest" class="btn">测试并保存</button><span id="obOut" class="status-line"></span></div>
+      <p class="muted small">也可以跳过，稍后在「设置 › AI 模型」中配置。未配置时，所有功能会自动使用本地规则。</p>
+    </div>
+
+    <div class="ob-panel" data-step="3" role="tabpanel">
+      <h1>一切就绪</h1>
+      <p class="lead">记住这几个快捷键：</p>
+      <div class="hk"><span><i class="ri-search-line"></i>快速搜索</span><kbd data-hk="search"></kbd></div>
+      <div class="hk"><span><i class="ri-sparkling-2-line"></i>AI 助手</span><kbd data-hk="chat"></kbd></div>
+      <div class="hk"><span><i class="ri-eye-off-line"></i>显示 / 隐藏格子</span><kbd data-hk="toggle"></kbd></div>
+      <label class="check"><input id="obRecent" type="checkbox" checked><span>添加「最近文件」格子</span></label>
+      <label class="check"><input id="obAuto" type="checkbox"><span>开机时自动启动</span></label>
+    </div>
+
+    <div class="ob-foot"><button id="skip" class="link">跳过引导</button><span class="grow"></span><button id="back" class="btn">上一步</button><button id="next" class="btn primary">下一步</button></div>
+  </section>
+  <script src="onboarding.js"></script>
+</body></html>

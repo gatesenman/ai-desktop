@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'"><link rel="stylesheet" href="fonts/remixicon.css"><link rel="stylesheet" href="style.css"><title>格子外观</title></head>
+<body class="appearance">
+  <div class="flyout">
+    <div class="fh"><span>格子外观</span><button id="close" class="tb" title="关闭 (Esc)"><i class="ri-close-line"></i></button></div>
+    <div class="fscroll">
+      <div id="pv" class="pv"><div class="pvbar"><span id="pvIcon" class="box-icon"></span><span id="pvTitle"></span></div><div class="pvbody"><i></i><i></i><i></i><i></i></div></div>
+      <label class="lbl">名称</label>
+      <input id="name" class="field" maxlength="40" spellcheck="false">
+      <label class="lbl">颜色</label>
+      <div id="colors" class="swatches"></div>
+      <div class="arow"><span>着色强度</span><input id="tint" type="range" min="0" max="1" step="0.05"><b id="tintVal"></b></div>
+      <div class="arow"><span>不透明度</span><input id="alpha" type="range" min="0.15" max="1" step="0.05"><b id="alphaVal"></b><button id="alphaReset" class="link" title="跟随全局设置">全局</button></div>
+      <label class="lbl">标题栏</label>
+      <div class="arow2"><div id="tstyle" class="segment sm"><button data-v="band">阴影条</button><button data-v="minimal">极简</button><button data-v="accent">彩色</button></div>
+        <div id="talign" class="segment sm"><button data-v="center" title="居中"><i class="ri-align-center"></i></button><button data-v="left" title="靠左"><i class="ri-align-left"></i></button></div></div>
+      <div class="arow"><span>标题字体</span><select id="tfont" class="field sm">
+        <option value="">系统默认</option><option value="Microsoft YaHei UI">微软雅黑</option><option value="DengXian">等线</option><option value="SimHei">黑体</option><option value="KaiTi">楷体</option><option value="FangSong">仿宋</option><option value="Segoe UI">Segoe UI</option><option value="Consolas">Consolas</option><option value="Georgia">Georgia</option>
+      </select></div>
+      <div class="arow"><span>标题字号</span><input id="tsize" type="range" min="10" max="24" step="1"><b id="tsizeVal"></b><button id="tsizeReset" class="link" title="恢复默认字号">重置</button></div>
+      <div class="arow"><span>标题颜色</span><input id="tcolor" type="color" value="#ffffff"><button id="tcolorReset" class="link" title="跟随主题">自动</button></div>
+      <div class="arow"><span>图标大小</span><input id="isize" type="range" min="24" max="72" step="2"><b id="isizeVal"></b><button id="isizeReset" class="link" title="跟随全局设置">重置</button></div>
+      <div class="arow"><span>标签样式</span><div id="tabstyle" class="segment sm"><button data-v="pill">胶囊</button><button data-v="underline">下划线</button><button data-v="classic">经典</button></div></div>
+      <label class="lbl">图标</label>
+      <div id="icons" class="icongrid"></div>
+      <div class="opts">
+        <label class="orow"><span><i class="ri-paint-brush-line"></i>图标着色<small>用格子颜色统一图标色调</small></span><span class="switch"><input id="iconTint" type="checkbox"><span></span></span></label>
+        <label class="orow"><span><i class="ri-eye-off-line"></i>隐藏标题栏图标<small>只显示名称，适合文件夹映射</small></span><span class="switch"><input id="hideTitleIcon" type="checkbox"><span></span></span></label>
+        <label class="orow"><span><i class="ri-lock-2-line"></i>锁定位置和大小</span><span class="switch"><input id="locked" type="checkbox"><span></span></span></label>
+        <label class="orow"><span><i class="ri-eye-line"></i>快速隐藏时保留<small>双击桌面隐藏时此格子仍显示</small></span><span class="switch"><input id="keepOnHide" type="checkbox"><span></span></span></label>
+      </div>
+    </div>
+  </div>
+  <script src="appearance.js"></script>
+</body></html>

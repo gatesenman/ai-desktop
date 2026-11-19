@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'"><link rel="stylesheet" href="fonts/remixicon.css"><link rel="stylesheet" href="style.css"><title>快速搜索</title></head>
+<body class="search">
+  <div class="panel">
+    <div class="sbar">
+      <i class="ri-search-line lens"></i>
+      <input id="q" placeholder="搜索文件名或内容（支持拼音），或直接说「把所有发票放到财务格子」" autofocus spellcheck="false">
+      <button id="clear" class="clear" title="清空"><i class="ri-close-circle-fill"></i></button>
+      <button id="ai" class="aibtn" title="AI 自然语言查找 (Tab)"><i class="ri-sparkling-2-fill"></i><span>AI 查找</span><kbd>Tab</kbd></button>
+    </div>
+    <div class="progress"></div>
+    <div id="list" class="list"></div>
+    <div class="foot">
+      <div id="status" class="status"></div>
+      <div class="keys">
+        <span><kbd><i class="ri-arrow-up-down-line"></i></kbd>选择</span>
+        <span><kbd><i class="ri-corner-down-left-line"></i></kbd>打开</span>
+        <span><kbd>Ctrl</kbd><kbd><i class="ri-corner-down-left-line"></i></kbd>打开位置</span>
+        <span><kbd>Esc</kbd>关闭</span>
+      </div>
+    </div>
+  </div>
+  <script src="search.js"></script>
+</body></html>
